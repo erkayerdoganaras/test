@@ -1,0 +1,24 @@
+from fastapi import FastAPI
+import uvicorn
+
+app=FastAPI()
+
+
+
+@app.get("/")
+def cevap():
+
+    return "Lutfen ıp adresinin yanına '/' koyup sırasıyla isim,yas ve maasinizi girin"
+
+
+
+@app.get("/{username},{age},{para}")
+def welcome(username:str,age:int,para:int):
+    if(para<5000):
+        return "ah be {} keske {} yasına kadar daha cok calıssaymıssın {} yetmez ki sana,neyse meslegin ne?".format(username,age,para)
+    elif(para>=5000):
+        return "helal olsun {} derslerine iyi calısmıssın {} yasında {} lira maas alıyosun peki meslegin nedir?".format(username,age,para)
+
+@app.get("/{username},{age},{para}/{meslek}")
+def hosgeldin(meslek:str,username:str):
+    return "{} güzel meslek {} tekrardan hosgeldin".format(meslek,username)
